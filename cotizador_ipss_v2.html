@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Generador de Cotizaciones IPSS</title>
+<link rel="stylesheet" href="cotizador_ipss.css">
+</head>
+<body>
+<div class="app-wrap">
+  <h1 class="app-title">⚡ Generador de Cotizaciones — IPSS</h1>
+
+  <div class="panel">
+    <div class="panel-title">Configurar cotización</div>
+
+    <div class="field">
+      <label>Carrera</label>
+      <select id="selCarrera">
+        <option value="">— Selecciona una carrera —</option>
+      </select>
+    </div>
+
+    <div class="field">
+      <label>Modalidad</label>
+      <div class="mod-btns">
+        <div class="mod-btn" id="btn-online">💻 Online</div>
+        <div class="mod-btn" id="btn-diurno">☀️ Diurno</div>
+        <div class="mod-btn" id="btn-vespertino">🌙 Vespertino</div>
+      </div>
+    </div>
+
+    <div class="field">
+      <label>N° de Cuotas</label>
+      <div class="cuotas-btns">
+        <div class="cuota-btn active" id="cq-10">10 cuotas</div>
+        <div class="cuota-btn" id="cq-12">12 cuotas</div>
+      </div>
+    </div>
+
+    <div class="field">
+      <label>Opciones adicionales</label>
+      <label class="check-row">
+        <input type="checkbox" id="chkBene">
+        <span>Aplicar <strong>beca 30%</strong> sobre arancel + matrícula gratis <span class="desc-tag">−30% arancel</span></span>
+      </label>
+      <label class="check-row" style="margin-top:9px">
+        <input type="checkbox" id="chkDif">
+        <span>Mostrar promoción: <strong>primera cuota diferida al 05 de junio</strong></span>
+      </label>
+    </div>
+
+    <button class="btn-gen">Generar tarjeta →</button>
+  </div>
+
+  <div class="preview-section" id="previewSection">
+    <div class="preview-label">Vista previa — captura de pantalla o imprime</div>
+    <div id="tarjetaContainer"></div>
+    <div class="acciones">
+      <button class="btn-accion btn-print" onclick="window.print()">🖨️ Imprimir / PDF</button>
+      <button class="btn-accion btn-how">📸 Cómo capturar</button>
+    </div>
+  </div>
+</div>
+<div class="notif" id="notif"></div>
+
+<script src="cotizador_ipss.js"></script>
+
+</body>
+</html>
