@@ -160,7 +160,9 @@ function generarTarjeta() {
   elements.tarjetaContainer.innerHTML = `
     <div class="tarjeta">
       <div class="t-header">
-        <img class="t-logo-img" src="${LOGO}" alt="Instituto Profesional San Sebastián">
+        <div class="t-logo-text">
+          <span class="t-institute">Instituto Profesional San Sebastián</span>
+        </div>
       </div>
       <div class="t-titlebar">
         <span class="t-title">${carrera.n}</span>

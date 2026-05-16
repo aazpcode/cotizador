@@ -246,6 +246,19 @@ select:focus {
   object-fit: contain;
 }
 
+.t-logo-text {
+  text-align: center;
+  color: #fff;
+  width: 100%;
+}
+
+.t-institute {
+  display: block;
+  font-weight: 700;
+  font-size: 16px;
+  letter-spacing: 0.6px;
+}
+
 .t-titlebar {
   background: #163a62;
   padding: 9px 22px;
