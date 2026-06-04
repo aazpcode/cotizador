@@ -363,10 +363,9 @@ function init() {
     const aplicarCambioBeca = () => {
       elements.becaSelect.disabled = !elements.beca.checked;
       actualizarBecaUI();
-      if (elements.preview.classList.contains('visible')) {
-        const carrera = getCarrera();
-        if (carrera) generarTarjeta();
-      }
+      const carrera = getCarrera();
+      const puedeRegenerar = carrera && (tipoPrograma === 'diplomados' || modSel);
+      if (puedeRegenerar) generarTarjeta();
     };
 
     elements.beca.addEventListener('change', aplicarCambioBeca);
