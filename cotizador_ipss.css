@@ -75,7 +75,8 @@ h1.app-title {
   letter-spacing: 0.8px;
 }
 
-select {
+select,
+input[type="date"] {
   width: 100%;
   padding: 10px 12px;
   border: 1.5px solid var(--border);
@@ -99,6 +100,38 @@ select:focus {
   display: flex;
   gap: 10px;
   flex-wrap: wrap;
+}
+
+.tipo-btns {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.tipo-btn {
+  flex: 1;
+  min-width: 120px;
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 2px solid var(--border);
+  background: #fafafa;
+  cursor: pointer;
+  font-weight: 700;
+  color: var(--muted);
+  text-align: center;
+  transition: all 0.2s;
+}
+
+.tipo-btn:hover:not(.active) {
+  border-color: var(--primary-strong);
+  color: var(--primary-strong);
+  background: #f0f4f8;
+}
+
+.tipo-btn.active {
+  border-color: var(--primary-strong);
+  background: var(--primary-strong);
+  color: #fff;
 }
 
 .mod-btn,
@@ -164,6 +197,29 @@ select:focus {
   font-size: 13px;
   color: #374151;
   line-height: 1.4;
+}
+
+.beca-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.beca-controls select {
+  padding: 8px 10px;
+  border-radius: 8px;
+  border: 1.5px solid var(--border);
+  background: #fafafa;
+  color: var(--text);
+  font-weight: 700;
+}
+
+.beca-pct {
+  font-weight: 700;
+  color: var(--primary);
+  font-size: 13px;
+  min-width: 48px;
+  text-align: right;
 }
 
 .desc-tag {

@@ -38,32 +38,81 @@ const CARRERAS = [
   { n: 'TÉCNICO EN RECURSOS HUMANOS',                    modalidades: { online: 1980000, diurno: null,    vespertino: null } },
 ];
 
+const DIPLOMADOS = [
+  { n: 'DIPLOMADO EN CIBERSEGURIDAD',                    matricula: 50000, arancel: 990000, fechaPago: '05/04/2026' },
+  { n: 'DIPLOMADO EN FULL STACK',                        matricula: 50000, arancel: 990000, fechaPago: '05/04/2026' },
+  { n: 'DIPLOMADO EN DATA SCIENCE',                      matricula: 50000, arancel: 990000, fechaPago: '05/04/2026' },
+  { n: 'DIPLOMADO HERRAMIENTAS DE IA PARA EL APOYO DOCENTE', matricula: 50000, arancel: 990000, fechaPago: '05/04/2026' },
+  { n: 'DIPLOMADO EN REDES INDUSTRIALES',                matricula: 50000, arancel: 990000, fechaPago: '05/04/2026' },
+  { n: 'DIPLOMADO LIDERAZGO ESTRATÉGICO Y MANAGEMENT 4.0', matricula: 50000, arancel: 990000, fechaPago: '05/04/2026' },
+  { n: 'DIPLOMADO ARQUITECTURA CLOUD',                   matricula: 50000, arancel: 990000, fechaPago: '05/04/2026' },
+  { n: 'DIPLOMADO INFRAESTRUCTURA CLOUD',                matricula: 50000, arancel: 990000, fechaPago: '05/04/2026' },
+  { n: 'DIPLOMADO EN SEGURIDAD OFENSIVA Y ETHICAL HACKING', matricula: 50000, arancel: 990000, fechaPago: '05/04/2026' },
+  { n: 'DIPLOMADO EN HOSPITALIZACIÓN DOMICILIARIA E INTERVENCIÓN TÉCNICA INTERDISCIPLINARIA', matricula: 50000, arancel: 990000, fechaPago: '05/04/2026' },
+  { n: 'DIPLOMADO EN CUIDADOS INTEGRALES Y DEPENDENCIA DE PERSONAS MAYORES', matricula: 50000, arancel: 990000, fechaPago: '05/04/2026' },
+];
+
 const elements = {
-  carrera: document.getElementById('selCarrera'),
+  carrera: document.getElementById('selPrograma'),
   preview: document.getElementById('previewSection'),
   tarjetaContainer: document.getElementById('tarjetaContainer'),
   notif: document.getElementById('notif'),
+  lblPrograma: document.getElementById('lblPrograma'),
   beca: document.getElementById('chkBene'),
+  becaSelect: document.getElementById('becaSelect'),
+  becaPct: document.getElementById('becaPct'),
+  descTag: document.getElementById('descTag'),
   dif: document.getElementById('chkDif'),
-  botonesModalidad: MODALIDADES.map(({ key }) => document.getElementById(`btn-${key}`)),
+  difLabel: document.getElementById('difLabel'),
+  fechaPago: document.getElementById('inputFechaPago'),
+  fieldModalidades: document.getElementById('fieldModalidades'),
+  botonesModalidad: MODALIDADES.map(({ key }) => document.getElementById(`btn-${key}`)).filter(Boolean),
   botonesCuotas: {
+    5: document.getElementById('cq-5'),
     10: document.getElementById('cq-10'),
     12: document.getElementById('cq-12'),
   },
+  tipoCarreras: document.getElementById('btn-carreras'),
+  tipoDiplomados: document.getElementById('btn-diplomados'),
 };
 
 let modSel = null;
 let cuotasSel = 10;
 let notifTimer = null;
+let tipoPrograma = 'carreras';
+const fechaPorTipo = {
+  carreras: '2026-06-30',
+  diplomados: '2026-08-05',
+};
 
 function formatMoney(value) {
   return value == null ? '—' : `$${Math.round(value).toLocaleString('es-CL')}`;
 }
 
+function formatDateDisplay(value) {
+  if (!value) return '—';
+  const parts = value.split('-');
+  if (parts.length !== 3) return value;
+  const [year, month, day] = parts;
+  return `${day}/${month}/${year}`;
+}
+
+function updateDifLabel() {
+  if (!elements.difLabel) return;
+  const fechaValor = elements.fechaPago && elements.fechaPago.value ? elements.fechaPago.value : fechaPorTipo[tipoPrograma];
+  const fecha = formatDateDisplay(fechaValor);
+  if (tipoPrograma === 'diplomados') {
+    elements.difLabel.innerHTML = `Mostrar promoción: <strong>primera cuota al ${fecha}</strong>`;
+  } else {
+    elements.difLabel.innerHTML = `Mostrar promoción: <strong>primera cuota diferida al ${fecha}</strong>`;
+  }
+}
+
 function getCarrera() {
   if (elements.carrera.value === '') return null;
   const index = Number(elements.carrera.value);
-  return Number.isInteger(index) && CARRERAS[index] ? CARRERAS[index] : null;
+  const data = tipoPrograma === 'diplomados' ? DIPLOMADOS : CARRERAS;
+  return Number.isInteger(index) && data[index] ? data[index] : null;
 }
 
 function resetModalidades() {
@@ -71,18 +120,64 @@ function resetModalidades() {
   elements.botonesModalidad.forEach((btn) => btn.classList.remove('active', 'disabled'));
 }
 
-function fillCarreras() {
+function fillPrograms() {
+  const data = tipoPrograma === 'diplomados' ? DIPLOMADOS : CARRERAS;
+  elements.carrera.innerHTML = '';
+  const placeholder = document.createElement('option');
+  placeholder.value = '';
+  placeholder.textContent = tipoPrograma === 'diplomados' ? 'Selecciona un diplomado...' : 'Selecciona una carrera...';
+  elements.carrera.appendChild(placeholder);
   const fragment = document.createDocumentFragment();
-  CARRERAS.forEach((carrera, index) => {
+  data.forEach((program, index) => {
     const option = document.createElement('option');
     option.value = index;
-    option.textContent = carrera.n;
+    option.textContent = program.n;
     fragment.appendChild(option);
   });
   elements.carrera.appendChild(fragment);
 }
 
+function cambiarTipoPrograma(tipo) {
+  tipoPrograma = tipo;
+  resetModalidades();
+  elements.carrera.value = '';
+
+  // Actualizar botones
+  if (elements.tipoCarreras && elements.tipoDiplomados) {
+    elements.tipoCarreras.classList.toggle('active', tipo === 'carreras');
+    elements.tipoDiplomados.classList.toggle('active', tipo === 'diplomados');
+  }
+
+  // Cambiar etiqueta
+  if (elements.lblPrograma) elements.lblPrograma.textContent = tipo === 'diplomados' ? 'Diplomado' : 'Carrera';
+
+  // Mostrar/ocultar modalidades
+  if (elements.fieldModalidades) elements.fieldModalidades.style.display = tipo === 'diplomados' ? 'none' : 'block';
+  if (tipo === 'diplomados') {
+    modSel = 'online';
+    cuotasSel = 5;
+    if (elements.botonesCuotas[5]) elements.botonesCuotas[5].style.display = 'block';
+    if (elements.botonesCuotas[10]) elements.botonesCuotas[10].style.display = 'none';
+    if (elements.botonesCuotas[12]) elements.botonesCuotas[12].style.display = 'none';
+    seleccionarCuotas(5);
+  } else {
+    if (elements.botonesCuotas[5]) elements.botonesCuotas[5].style.display = 'none';
+    if (elements.botonesCuotas[10]) elements.botonesCuotas[10].style.display = 'block';
+    if (elements.botonesCuotas[12]) elements.botonesCuotas[12].style.display = 'block';
+    seleccionarCuotas(10);
+  }
+
+  if (elements.fechaPago) {
+    elements.fechaPago.value = fechaPorTipo[tipo];
+  }
+  updateDifLabel();
+
+  // Llenar opciones según tipo
+  fillPrograms();
+}
+
 function actualizarModalidades() {
+  if (tipoPrograma === 'diplomados') return;
   resetModalidades();
   const carrera = getCarrera();
   if (!carrera) return;
@@ -95,6 +190,7 @@ function actualizarModalidades() {
 }
 
 function seleccionarModalidad(key) {
+  if (tipoPrograma === 'diplomados') return;
   const carrera = getCarrera();
   if (!carrera || !MODALIDADES.some((m) => m.key === key)) return;
   if (carrera.modalidades[key] == null) return;
@@ -115,18 +211,20 @@ function seleccionarCuotas(cuotas) {
 function generarTarjeta() {
   const carrera = getCarrera();
   if (!carrera) {
-    return mostrarNotif('⚠️ Selecciona una carrera');
+    return mostrarNotif(`⚠️ Selecciona ${tipoPrograma === 'diplomados' ? 'un diplomado' : 'una carrera'}`);
   }
   if (!modSel) {
     return mostrarNotif('⚠️ Selecciona una modalidad');
   }
 
-  const arancelBase = carrera.modalidades[modSel];
+  const esDiplomado = tipoPrograma === 'diplomados';
+  const arancelBase = esDiplomado ? carrera.arancel : carrera.modalidades[modSel];
+  const matricula = esDiplomado ? carrera.matricula : 0;
   const tieneBeca = elements.beca.checked;
   const tieneDif = elements.dif.checked;
   const arancelFinal = tieneBeca ? Math.round(arancelBase * 0.7) : arancelBase;
   const mensual = Math.round(arancelFinal / cuotasSel);
-  const modalidadEtiqueta = MODALIDADES.find((m) => m.key === modSel).label;
+  const modalidadEtiqueta = esDiplomado ? 'Online' : MODALIDADES.find((m) => m.key === modSel).label;
 
   const descuentoHtml = tieneBeca
     ? `
@@ -138,22 +236,24 @@ function generarTarjeta() {
       </tr>`
     : '';
 
+  const matriculaRef = formatMoney(matricula || 184000);
   const beneficiosHtml = tieneBeca
     ? `
       <div class="t-bene">
         <div class="t-bene-title">⭐ Beneficios exclusivos — cupos limitados</div>
         <ul>
           <li><strong>Solo 3 cupos disponibles</strong></li>
-          <li><strong>Matrícula gratis</strong> (valor ref. $184.000)</li>
-          <li><strong>Beca del 30%</strong> en arancel por toda la carrera</li>
+          <li><strong>Matrícula gratis</strong> (valor ref. ${matriculaRef})</li>
+          <li><strong>Beca del 30%</strong> en arancel por toda la ${esDiplomado ? 'formación' : 'carrera'}</li>
         </ul>
       </div>`
     : '';
 
+  const fechaInicio = elements.fechaPago && elements.fechaPago.value ? formatDateDisplay(elements.fechaPago.value) : formatDateDisplay(fechaPorTipo[tipoPrograma]);
   const footerHtml = tieneDif
     ? `
       <div class="t-footer">
-        <p>Si te matriculas hoy, tu primera cuota queda diferida para el <strong>05 de junio</strong> 🕐</p>
+        <p>Si te matriculas hoy, tu primera cuota queda diferida para el <strong>${fechaInicio}</strong> 🕐</p>
       </div>`
     : '';
 
@@ -218,15 +318,51 @@ function mostrarNotif(text) {
 }
 
 function init() {
-  fillCarreras();
+  // Set initial UI and options
+  cambiarTipoPrograma(tipoPrograma);
+
+  // Tipo de programa
+  elements.tipoCarreras.addEventListener('click', () => cambiarTipoPrograma('carreras'));
+  elements.tipoDiplomados.addEventListener('click', () => cambiarTipoPrograma('diplomados'));
+
+  // Programa seleccionado -> actualizar modalidades
   elements.carrera.addEventListener('change', actualizarModalidades);
+  if (elements.fechaPago) {
+    elements.fechaPago.value = fechaPorTipo[tipoPrograma];
+    elements.fechaPago.addEventListener('change', () => {
+      fechaPorTipo[tipoPrograma] = elements.fechaPago.value;
+      updateDifLabel();
+    });
+  }
+
+  // Modalidades
   elements.botonesModalidad.forEach((boton) => {
     boton.addEventListener('click', () => seleccionarModalidad(boton.id.replace('btn-', '')));
   });
-  elements.botonesCuotas[10].addEventListener('click', () => seleccionarCuotas(10));
-  elements.botonesCuotas[12].addEventListener('click', () => seleccionarCuotas(12));
+
+  // Cuotas
+  if (elements.botonesCuotas[5]) elements.botonesCuotas[5].addEventListener('click', () => seleccionarCuotas(5));
+  if (elements.botonesCuotas[10]) elements.botonesCuotas[10].addEventListener('click', () => seleccionarCuotas(10));
+  if (elements.botonesCuotas[12]) elements.botonesCuotas[12].addEventListener('click', () => seleccionarCuotas(12));
+
+  // Acciones
   document.querySelector('.btn-gen').addEventListener('click', generarTarjeta);
   document.querySelector('.btn-how').addEventListener('click', mostrarCaptura);
+
+  // Inicializar controles de beca (checkbox + select)
+  if (elements.beca && elements.becaSelect && elements.becaPct && elements.descTag) {
+    elements.becaPct.textContent = elements.becaSelect.value + '%';
+    elements.descTag.textContent = `−${elements.becaSelect.value}% arancel`;
+    elements.beca.addEventListener('change', () => {
+      elements.becaSelect.disabled = !elements.beca.checked;
+      elements.becaPct.textContent = elements.becaSelect.value + '%';
+      elements.descTag.textContent = `−${elements.becaSelect.value}% arancel`;
+    });
+    elements.becaSelect.addEventListener('change', () => {
+      elements.becaPct.textContent = elements.becaSelect.value + '%';
+      elements.descTag.textContent = `−${elements.becaSelect.value}% arancel`;
+    });
+  }
 }
 
 init();
