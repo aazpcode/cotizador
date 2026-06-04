@@ -221,15 +221,16 @@ function generarTarjeta() {
   const arancelBase = esDiplomado ? carrera.arancel : carrera.modalidades[modSel];
   const matricula = esDiplomado ? carrera.matricula : 0;
   const tieneBeca = elements.beca.checked;
+  const becaPct = tieneBeca ? Number(elements.becaSelect.value) : 0;
   const tieneDif = elements.dif.checked;
-  const arancelFinal = tieneBeca ? Math.round(arancelBase * 0.7) : arancelBase;
+  const arancelFinal = becaPct ? Math.round(arancelBase * (1 - becaPct / 100)) : arancelBase;
   const mensual = Math.round(arancelFinal / cuotasSel);
   const modalidadEtiqueta = esDiplomado ? 'Online' : MODALIDADES.find((m) => m.key === modSel).label;
 
   const descuentoHtml = tieneBeca
     ? `
       <tr class="t-desc-row">
-        <td colspan="2"><span class="t-desc-label">✓ Beca aplicada — Matrícula 100% + Arancel 30%</span></td>
+        <td colspan="2"><span class="t-desc-label">✓ Beca aplicada — Matrícula 100% + Arancel ${becaPct}%</span></td>
         <td><span class="t-desc-label"><del style="color:#9ca3af;font-size:11px">${formatMoney(arancelBase)}</del><br>${formatMoney(arancelFinal)}</span></td>
         <td><span class="t-desc-label"><del style="color:#9ca3af;font-size:11px">${formatMoney(arancelBase / cuotasSel)}</del><br>${formatMoney(mensual)}</span></td>
         <td><span class="t-desc-label">—</span></td>
@@ -244,7 +245,7 @@ function generarTarjeta() {
         <ul>
           <li><strong>Solo 3 cupos disponibles</strong></li>
           <li><strong>Matrícula gratis</strong> (valor ref. ${matriculaRef})</li>
-          <li><strong>Beca del 30%</strong> en arancel por toda la ${esDiplomado ? 'formación' : 'carrera'}</li>
+          <li><strong>Beca del ${becaPct}%</strong> en arancel por toda la ${esDiplomado ? 'formación' : 'carrera'}</li>
         </ul>
       </div>`
     : '';
