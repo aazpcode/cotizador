@@ -108,6 +108,12 @@ function updateDifLabel() {
   }
 }
 
+function actualizarBecaUI() {
+  if (!elements.becaSelect || !elements.becaPct || !elements.descTag) return;
+  elements.becaPct.textContent = `${elements.becaSelect.value}%`;
+  elements.descTag.textContent = `−${elements.becaSelect.value}% arancel`;
+}
+
 function getCarrera() {
   if (elements.carrera.value === '') return null;
   const index = Number(elements.carrera.value);
@@ -352,17 +358,19 @@ function init() {
 
   // Inicializar controles de beca (checkbox + select)
   if (elements.beca && elements.becaSelect && elements.becaPct && elements.descTag) {
-    elements.becaPct.textContent = elements.becaSelect.value + '%';
-    elements.descTag.textContent = `−${elements.becaSelect.value}% arancel`;
-    elements.beca.addEventListener('change', () => {
+    actualizarBecaUI();
+
+    const aplicarCambioBeca = () => {
       elements.becaSelect.disabled = !elements.beca.checked;
-      elements.becaPct.textContent = elements.becaSelect.value + '%';
-      elements.descTag.textContent = `−${elements.becaSelect.value}% arancel`;
-    });
-    elements.becaSelect.addEventListener('change', () => {
-      elements.becaPct.textContent = elements.becaSelect.value + '%';
-      elements.descTag.textContent = `−${elements.becaSelect.value}% arancel`;
-    });
+      actualizarBecaUI();
+      if (elements.preview.classList.contains('visible')) {
+        const carrera = getCarrera();
+        if (carrera) generarTarjeta();
+      }
+    };
+
+    elements.beca.addEventListener('change', aplicarCambioBeca);
+    elements.becaSelect.addEventListener('change', aplicarCambioBeca);
   }
 }
 
