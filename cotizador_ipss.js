@@ -121,6 +121,11 @@ const elements = {
   tarjetaContainer: document.getElementById('tarjetaContainer'),
   notif: document.getElementById('notif'),
   descuento: document.getElementById('selDescuento'),
+  botonesCatalogo: {
+    2026: document.getElementById('catalog-2026'),
+    2027: document.getElementById('catalog-2027'),
+    diplomados: document.getElementById('catalog-diplomados'),
+  },
   botonesModalidad: MODALIDADES.map(({ key }) => document.getElementById(`btn-${key}`)),
   botonesCuotas: {
     5: document.getElementById('cq-5'),
@@ -228,11 +233,20 @@ function fillCarreras() {
 }
 
 function actualizarCatalogo() {
+  const catalogoActual = getCatalogoActual();
+  Object.entries(elements.botonesCatalogo).forEach(([valor, boton]) => {
+    boton.classList.toggle('active', valor === elements.categoria.value);
+  });
   fillCarreras();
   resetModalidades();
   actualizarCuotasDisponibles();
   elements.preview.classList.remove('visible');
   elements.tarjetaContainer.innerHTML = '';
+}
+
+function seleccionarCatalogo(catalogo) {
+  elements.categoria.value = catalogo;
+  actualizarCatalogo();
 }
 
 function actualizarModalidades() {
@@ -370,6 +384,9 @@ function init() {
   actualizarCuotasDisponibles();
 
   elements.categoria.addEventListener('change', actualizarCatalogo);
+  Object.entries(elements.botonesCatalogo).forEach(([catalogo, boton]) => {
+    boton.addEventListener('click', () => seleccionarCatalogo(catalogo));
+  });
   elements.carrera.addEventListener('input', fillCarreras);
   elements.carrera.addEventListener('focus', () => {
     fillCarreras();

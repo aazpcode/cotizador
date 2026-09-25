@@ -14,8 +14,13 @@
     <div class="panel-title">Configurar cotización</div>
 
     <div class="field">
-      <label>Catálogo</label>
-      <select id="selCategoria">
+      <label>Tipo de programa</label>
+      <div class="catalog-btns" role="tablist" aria-label="Tipo de programa">
+        <button type="button" class="catalog-btn active" data-catalog="2026" id="catalog-2026">Carreras 2026</button>
+        <button type="button" class="catalog-btn" data-catalog="2027" id="catalog-2027">Carreras 2027</button>
+        <button type="button" class="catalog-btn" data-catalog="diplomados" id="catalog-diplomados">Diplomados</button>
+      </div>
+      <select id="selCategoria" class="sr-only" aria-hidden="true">
         <option value="2026">2026-3</option>
         <option value="2027">2027-1</option>
         <option value="diplomados">Diplomados 2026-3</option>
