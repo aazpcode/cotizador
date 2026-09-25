@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Generador de Cotizaciones IPSS</title>
+<link rel="stylesheet" href="cotizador_ipss.css">
+</head>
+<body>
+<div class="app-wrap">
+  <h1 class="app-title">⚡ Generador de Cotizaciones — IPSS</h1>
+
+  <div class="panel">
+    <div class="panel-title">Configurar cotización</div>
+
+    <div class="field">
+      <label>Catálogo</label>
+      <select id="selCategoria">
+        <option value="2026">2026-3</option>
+        <option value="2027">2027-1</option>
+        <option value="diplomados">Diplomados 2026-3</option>
+      </select>
+    </div>
+
+    <div class="field">
+      <label>Carrera</label>
+      <div class="career-search-wrap">
+        <input
+          type="text"
+          id="selCarrera"
+          class="search-input"
+          placeholder="Busca o selecciona una carrera..."
+          autocomplete="off"
+        >
+        <div id="carrerasList" class="carreras-dropdown" role="listbox" aria-live="polite"></div>
+      </div>
+    </div>
+
+    <div class="field">
+      <label>Modalidad</label>
+      <div class="mod-btns">
+        <div class="mod-btn" id="btn-online">💻 Online</div>
+        <div class="mod-btn" id="btn-diurno">☀️ Diurno</div>
+        <div class="mod-btn" id="btn-vespertino">🌙 Vespertino</div>
+        <div class="mod-btn" id="btn-semipresencial">🧩 Semi a distancia</div>
+      </div>
+    </div>
+
+    <div class="field">
+      <label>N° de Cuotas</label>
+      <div class="cuotas-btns">
+        <div class="cuota-btn active" id="cq-10">10 cuotas</div>
+        <div class="cuota-btn" id="cq-12">12 cuotas</div>
+      </div>
+    </div>
+
+    <div class="field">
+      <label>Descuento aplicable</label>
+      <select id="selDescuento">
+        <option value="0">0%</option>
+        <option value="5">5%</option>
+        <option value="10">10%</option>
+        <option value="15">15%</option>
+        <option value="20">20%</option>
+        <option value="25">25%</option>
+        <option value="30">30%</option>
+        <option value="35">35%</option>
+        <option value="40">40%</option>
+        <option value="45">45%</option>
+        <option value="50">50%</option>
+      </select>
+    </div>
+
+    <button class="btn-gen">Generar tarjeta →</button>
+  </div>
+
+  <div class="preview-section" id="previewSection">
+    <div id="tarjetaContainer"></div>
+  </div>
+</div>
+<div class="notif" id="notif"></div>
+
+<script src="cotizador_ipss.js"></script>
+
+</body>
+</html>
