@@ -25,7 +25,7 @@
 
 body {
   font-family: 'Segoe UI', Arial, sans-serif;
-  background: linear-gradient(180deg, var(--bg) 0%, var(--bg-accent) 100%);
+  background: radial-gradient(circle at top, #f3f8ff 0%, #edf3fa 32%, #e9eef5 100%);
   min-height: 100vh;
   padding: 28px 16px 40px;
   color: var(--text);
@@ -34,6 +34,170 @@ body {
 .app-wrap {
   max-width: 760px;
   margin: 0 auto;
+}
+
+.preview-section {
+  max-width: 420px;
+  margin: 0 auto;
+  padding: 0;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+}
+
+@media (max-width: 640px) {
+  body {
+    padding: 16px 12px 28px;
+  }
+
+  .app-wrap {
+    max-width: 100%;
+  }
+
+  .panel,
+  .preview-section {
+    padding: 16px 14px 14px;
+    border-radius: 14px;
+  }
+
+  .catalog-btns,
+  .mod-btns,
+  .cuotas-btns {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+
+  .catalog-btn,
+  .mod-btn,
+  .cuota-btn {
+    width: 100%;
+    min-width: 0;
+    padding: 11px 8px;
+    font-size: 12px;
+  }
+
+  .field {
+    margin-bottom: 10px;
+  }
+
+  .field label {
+    font-size: 9px;
+    letter-spacing: 0.6px;
+  }
+
+  select,
+  .search-input {
+    font-size: 14px;
+    padding: 11px 10px;
+  }
+
+  .btn-gen {
+    padding: 13px 14px;
+    font-size: 13px;
+  }
+
+  .t-header-banner img {
+    max-height: 78px;
+  }
+
+  .t-coursebar {
+    padding: 10px 12px;
+  }
+
+  .t-course-name {
+    font-size: 12px;
+    line-height: 1.2;
+    letter-spacing: 0.4px;
+  }
+
+  .t-body {
+    padding: 10px 10px 12px;
+  }
+
+  .t-mobile-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 6px;
+    margin-bottom: 8px;
+  }
+
+  .t-stat-card {
+    min-height: 60px;
+    padding: 6px 7px;
+    border-radius: 8px;
+  }
+
+  .t-stat-label {
+    font-size: 8px;
+    letter-spacing: 0.5px;
+  }
+
+  .t-stat-value {
+    font-size: 14px;
+  }
+
+  .t-table {
+    display: none;
+  }
+
+  .t-discount-box {
+    padding: 10px 10px;
+    margin-top: 8px;
+  }
+
+  .t-discount-header {
+    font-size: 9px;
+  }
+
+  .t-discount-percent {
+    font-size: 20px;
+  }
+
+  .t-discount-meta {
+    font-size: 10px;
+  }
+
+  .t-badge {
+    font-size: 10px;
+    padding: 5px 8px;
+  }
+
+  .t-green,
+  .t-navy {
+    font-size: 12px;
+  }
+
+  .t-sub,
+  .t-strike {
+    font-size: 9px;
+  }
+
+  .t-desc-label {
+    font-size: 9px;
+  }
+
+  .t-wa-promo {
+    padding: 9px 10px;
+    margin-top: 8px;
+  }
+
+  .t-wa-total {
+    font-size: 24px;
+  }
+
+  .t-wa-sub {
+    font-size: 10px;
+  }
+
+  .t-wa-message {
+    padding: 9px 10px;
+    margin-top: 8px;
+  }
+
+  .t-wa-message strong,
+  .t-wa-message span {
+    font-size: 11px;
+  }
 }
 
 h1.app-title {
@@ -285,64 +449,59 @@ select:focus,
   line-height: 1.4;
 }
 
-.comparador {
-  background: linear-gradient(180deg, #f8fafc, #f1f5f9);
-  border: 1px solid #dfe7f1;
-  border-radius: 12px;
-  padding: 12px 14px;
-  margin-top: 12px;
+.t-wa-promo {
+  background: linear-gradient(180deg, #f9fbff, #edf5ff);
+  border: 1px solid #dfeaf7;
+  border-radius: 14px;
+  padding: 10px 12px;
+  margin-top: 10px;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.8);
 }
 
-.comparador-header {
-  font-size: 10px;
-  letter-spacing: 1.4px;
+.t-wa-header {
+  font-size: 9px;
+  letter-spacing: 0.9px;
   text-transform: uppercase;
-  color: #6b7280;
-  font-weight: 700;
-  margin-bottom: 10px;
+  color: #64748b;
+  font-weight: 800;
+  margin-bottom: 6px;
+  text-align: center;
 }
 
-.comparador-row {
+.t-wa-row {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 10px;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
 }
 
-.comparador-box {
+.t-wa-box {
   background: #fff;
   border: 1px solid #e5e7eb;
   border-radius: 10px;
-  padding: 10px 12px;
+  padding: 8px 10px;
+  text-align: center;
 }
 
-.comparador-box.accent {
-  background: #eff6ff;
-  border-color: #bfdbfe;
+.t-wa-box.accent {
+  background: #effaf1;
+  border-color: #bfecc9;
 }
 
-.comparador-label {
+.t-wa-box span {
   display: block;
-  font-size: 10px;
-  letter-spacing: 0.8px;
+  font-size: 9px;
+  letter-spacing: 0.7px;
   text-transform: uppercase;
-  color: #6b7280;
+  color: #64748b;
   margin-bottom: 4px;
 }
 
-.comparador-box strong {
-  color: var(--primary);
-  font-size: 15px;
+.t-wa-box strong {
+  font-size: 13px;
+  color: #0f172a;
+  font-weight: 800;
 }
 
-.comparador-total {
-  margin-top: 10px;
-  font-size: 12px;
-  color: #374151;
-}
-
-.comparador-total strong {
-  color: var(--success);
-}
 
 .desc-tag {
   display: inline-block;
@@ -403,36 +562,152 @@ select:focus,
 }
 
 .tarjeta {
+  width: 100%;
+  max-width: 420px;
+  margin: 0 auto;
   font-family: 'Segoe UI', Arial, sans-serif;
-  border-radius: 16px;
+  border-radius: 22px 22px 18px 10px;
   overflow: hidden;
-  border: 1px solid #dfe7f1;
-  background: #f4f6f9;
-  box-shadow: 0 14px 32px rgba(15, 23, 42, 0.08);
+  border: 1px solid rgba(148, 163, 184, 0.25);
+  background: linear-gradient(180deg, #f9fbff 0%, #f3f7fb 100%);
+  box-shadow: 0 18px 36px rgba(15, 23, 42, 0.12), 0 6px 12px rgba(15, 23, 42, 0.06);
 }
 
-.t-titlebar {
-  background: linear-gradient(180deg, #163a62, #0d2d4d);
-  padding: 12px 18px;
-  border-top: 1px solid rgba(255, 255, 255, 0.12);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
+.t-header-banner {
+  width: 100%;
+  background: #fff;
+  border-bottom: 1px solid rgba(15, 23, 42, 0.06);
 }
 
-.t-title {
-  font-size: 11px;
-  letter-spacing: 1.4px;
-  color: #dfeefb;
+.t-header-banner img {
+  display: block;
+  width: 100%;
+  max-height: 110px;
+  object-fit: cover;
+  object-position: center;
+}
+
+.t-coursebar {
+  background: linear-gradient(135deg, #0d3a63 0%, #0a2d4d 100%);
+  padding: 14px 18px;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+
+.t-course-name {
+  display: block;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 800;
+  letter-spacing: 0.5px;
   text-transform: uppercase;
-  font-weight: 700;
-  line-height: 1.4;
-  flex: 1;
 }
 
 .t-body {
   padding: 16px 18px 14px;
+}
+
+.t-mobile-summary {
+  display: block;
+}
+
+.t-mobile-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.t-stat-card {
+  background: linear-gradient(180deg, #ffffff, #f7fafc);
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 10px 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 3px;
+  min-height: 76px;
+  text-align: center;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.9), 0 2px 8px rgba(15, 23, 42, 0.02);
+}
+
+.t-stat-card.highlight {
+  background: linear-gradient(180deg, #f6fff9, #eefcf3);
+  border-color: #bfecc9;
+}
+
+.t-stat-card.accent {
+  background: linear-gradient(180deg, #edf7ff, #eef5ff);
+  border-color: #bfdbfe;
+}
+
+.t-stat-card.monthly {
+  min-height: 96px;
+  background: linear-gradient(180deg, #f6fff9, #eefcf3);
+  border-color: #bfecc9;
+  box-shadow: 0 0 0 1px rgba(31, 122, 69, 0.06);
+}
+
+.t-stat-card.monthly .t-stat-value {
+  font-size: 28px;
+  line-height: 1.1;
+}
+
+.t-stat-card.wide {
+  grid-column: span 2;
+}
+
+.t-monthly-row {
+  display: grid;
+  grid-template-columns: 1.2fr 0.9fr;
+  gap: 6px;
+  width: 100%;
+  align-items: center;
+}
+
+.t-monthly-compare {
+  background: rgba(255,255,255,0.5);
+  border-radius: 8px;
+  padding: 6px 6px;
+  border: 1px solid rgba(15, 138, 70, 0.18);
+}
+
+.t-monthly-compare span {
+  display: block;
+  font-size: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.7px;
+  color: #526072;
+}
+
+.t-monthly-compare strong {
+  display: block;
+  font-size: 12px;
+  color: #475569;
+  text-decoration: line-through;
+  margin-top: 2px;
+}
+
+.t-stat-label {
+  display: block;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  color: #6b7280;
+  text-align: center;
+}
+
+.t-stat-value {
+  font-size: 14px;
+  color: var(--primary);
+  font-weight: 800;
+  text-align: center;
+}
+
+.t-stat-card .t-badge {
+  margin: 0 auto;
 }
 
 .t-table {
@@ -473,13 +748,17 @@ select:focus,
 }
 
 .t-badge {
-  display: inline-block;
-  background: var(--primary);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #0f3d68, #163f69);
   color: #fff;
   font-size: 12px;
   font-weight: 700;
-  padding: 4px 13px;
-  border-radius: 20px;
+  padding: 6px 12px;
+  border-radius: 18px;
+  white-space: nowrap;
+  box-shadow: 0 6px 14px rgba(15, 61, 104, 0.2);
 }
 
 .t-green {
@@ -503,6 +782,7 @@ select:focus,
 
 .t-sub {
   font-size: 10px;
+  color: #526072;
 }
 
 .t-strike {
@@ -510,14 +790,46 @@ select:focus,
   text-decoration: line-through;
 }
 
-.t-desc-row td {
-  background: var(--success-soft);
-  border-color: #bbf7d0;
+.t-discount-box {
+  background: linear-gradient(180deg, #ebfaf0 0%, #e3f7e9 100%);
+  border: 1px solid #bfecc9;
+  border-radius: 14px;
+  padding: 12px 12px 10px;
+  text-align: center;
+  margin-top: 0;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.7);
 }
 
-.t-desc-label {
-  font-size: 11px;
+.t-discount-header {
+  font-size: 10px;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
   color: var(--success);
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.t-discount-percent {
+  font-size: 30px;
+  font-weight: 800;
+  color: #0f8a46;
+  line-height: 1.1;
+}
+
+.t-discount-meta {
+  font-size: 11px;
+  color: #166534;
+  margin-top: 4px;
+  line-height: 1.4;
+}
+
+.t-discount-meta strong {
+  color: #0f8a46;
+}
+
+.t-old-price {
+  color: #7a8a8a;
+  text-decoration: line-through;
   font-weight: 600;
 }
 

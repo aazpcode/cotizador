@@ -45,7 +45,7 @@ const CARRERAS_2027 = [
   { n: 'INGENIERÍA EN ADMINISTRACIÓN DE EMPRESAS', modalidades: { online: 2169000, diurno: 2085000, vespertino: 2204000, semipresencial: null } },
   { n: 'INGENIERÍA EN COMERCIO EXTERIOR', modalidades: { online: 2198000, diurno: null, vespertino: null, semipresencial: null } },
   { n: 'INGENIERÍA EN FINANZAS', modalidades: { online: 2085000, diurno: null, vespertino: null, semipresencial: null } },
-  { n: 'INGENIERÍA EN LOGÍSTICA', modalidades: { online: 2169000, diurno: 2101000, vespertino: null, semipresencial: null } },
+  { n: 'INGENIERÍA EN LOGÍSTICA', modalidades: { online: 2169000, diurno: null, vespertino: 2101000, semipresencial: null } },
   { n: 'INGENIERÍA EN MARKETING DIGITAL', modalidades: { online: 2085000, diurno: null, vespertino: null, semipresencial: null } },
   { n: 'INGENIERÍA EN RRHH', modalidades: { online: 2237000, diurno: null, vespertino: null, semipresencial: null } },
   { n: 'INGENIERÍA EN SEGURIDAD PRIVADA', modalidades: { online: 2060000, diurno: null, vespertino: null, semipresencial: null } },
@@ -54,22 +54,22 @@ const CARRERAS_2027 = [
   { n: 'TÉCNICO EN ADMINISTRACIÓN PÚBLICA', modalidades: { online: 2106000, diurno: null, vespertino: null, semipresencial: null } },
   { n: 'TÉCNICO EN COMERCIO EXTERIOR', modalidades: { online: 2198000, diurno: null, vespertino: null, semipresencial: null } },
   { n: 'TÉCNICO EN FINANZAS', modalidades: { online: 2085000, diurno: null, vespertino: null, semipresencial: null } },
-  { n: 'TÉCNICO EN LOGÍSTICA', modalidades: { online: 2169000, diurno: 2101000, vespertino: null, semipresencial: null } },
+  { n: 'TÉCNICO EN LOGÍSTICA', modalidades: { online: 2169000, diurno: null, vespertino: null, semipresencial: null } },
   { n: 'TÉCNICO EN MARKETING DIGITAL', modalidades: { online: 2085000, diurno: null, vespertino: null, semipresencial: null } },
   { n: 'TÉCNICO EN RRHH', modalidades: { online: 2237000, diurno: null, vespertino: null, semipresencial: null } },
-  { n: 'NATUROPATÍA', modalidades: { online: null, diurno: 2085000, vespertino: null, semipresencial: 2085000 } },
+  { n: 'NATUROPATÍA', modalidades: { online: null, diurno: null, vespertino: 2085000, semipresencial: null } },
   { n: 'TÉCNICO EN ENFERMERÍA', modalidades: { online: null, diurno: 2404000, vespertino: 2427000, semipresencial: 2427000 } },
-  { n: 'TÉCNICO EN ENFERMERÍA E INSTRUMENTACIÓN QUIRÚRGICA', modalidades: { online: null, diurno: 2174000, vespertino: null, semipresencial: 2174000 } },
-  { n: 'TÉCNICO EN FARMACIA', modalidades: { online: null, diurno: null, vespertino: 2277000, semipresencial: 2277000 } },
-  { n: 'TÉCNICO EN IMAGENOLOGÍA', modalidades: { online: 2524000, diurno: null, vespertino: null, semipresencial: 2524000 } },
-  { n: 'TÉCNICO EN ODONTOLOGÍA', modalidades: { online: 2524000, diurno: null, vespertino: null, semipresencial: 2524000 } },
-  { n: 'TÉCNICO VETERINARIO EN CLÍNICA DE ANIMALES DE COMPAÑÍA', modalidades: { online: null, diurno: null, vespertino: null, semipresencial: 2353000 } },
+  { n: 'TÉCNICO EN ENFERMERÍA E INSTRUMENTACIÓN QUIRÚRGICA', modalidades: { online: null, diurno: 2174000, vespertino: 2174000, semipresencial: null } },
+  { n: 'TÉCNICO EN FARMACIA', modalidades: { online: null, diurno: null, vespertino: null, semipresencial: 2277000 } },
+  { n: 'TÉCNICO EN IMAGENOLOGÍA', modalidades: { online: null, diurno: null, vespertino: null, semipresencial: 2524000 } },
+  { n: 'TÉCNICO EN ODONTOLOGÍA', modalidades: { online: null, diurno: null, vespertino: null, semipresencial: 2524000 } },
+  { n: 'TÉCNICO VETERINARIO (ANIMALES DE COMPAÑÍA)', modalidades: { online: null, diurno: null, vespertino: null, semipresencial: 2353000 } },
   { n: 'INGENIERÍA EN ARQUITECTURA CLOUD', modalidades: { online: 2395000, diurno: null, vespertino: null, semipresencial: null } },
-  { n: 'INGENIERÍA EN CIBERSEGURIDAD', modalidades: { online: 2464000, diurno: 2517000, vespertino: null, semipresencial: null } },
+  { n: 'INGENIERÍA EN CIBERSEGURIDAD', modalidades: { online: 2464000, diurno: null, vespertino: 2517000, semipresencial: null } },
   { n: 'INGENIERÍA EN CIENCIA DE DATOS', modalidades: { online: 2298000, diurno: null, vespertino: null, semipresencial: null } },
-  { n: 'INGENIERÍA EN CONECTIVIDAD Y REDES', modalidades: { online: 2290000, diurno: 2601000, vespertino: null, semipresencial: null } },
-  { n: 'INGENIERÍA EN CONSTRUCCIÓN', modalidades: { online: 2524000, diurno: null, vespertino: null, semipresencial: null } },
-  { n: 'INGENIERÍA EN ELECTRICIDAD', modalidades: { online: 2461000, diurno: null, vespertino: null, semipresencial: null } },
+  { n: 'INGENIERÍA EN CONECTIVIDAD Y REDES', modalidades: { online: 2290000, diurno: null, vespertino: 2601000, semipresencial: null } },
+  { n: 'INGENIERÍA EN CONSTRUCCIÓN', modalidades: { online: null, diurno: null, vespertino: null, semipresencial: 2524000 } },
+  { n: 'INGENIERÍA EN ELECTRICIDAD', modalidades: { online: null, diurno: null, vespertino: null, semipresencial: 2461000 } },
   { n: 'INGENIERÍA EN INFORMÁTICA', modalidades: { online: 2359000, diurno: 2338000, vespertino: 2430000, semipresencial: null } },
   { n: 'INGENIERÍA EN INTELIGENCIA ARTIFICIAL', modalidades: { online: 2237000, diurno: null, vespertino: null, semipresencial: null } },
   { n: 'INGENIERÍA EN OPERACIONES MINERAS', modalidades: { online: 2396000, diurno: null, vespertino: null, semipresencial: null } },
@@ -77,18 +77,17 @@ const CARRERAS_2027 = [
   { n: 'INGENIERÍA INDUSTRIAL', modalidades: { online: 2085000, diurno: null, vespertino: null, semipresencial: null } },
   { n: 'TÉCNICO EN CIBERSEGURIDAD', modalidades: { online: 2464000, diurno: 2338000, vespertino: 2517000, semipresencial: null } },
   { n: 'TÉCNICO EN CIENCIA DE DATOS', modalidades: { online: 2298000, diurno: null, vespertino: null, semipresencial: null } },
-  { n: 'TÉCNICO EN CONECTIVIDAD Y REDES', modalidades: { online: 2290000, diurno: 2601000, vespertino: null, semipresencial: null } },
-  { n: 'TÉCNICO EN CONSTRUCCIÓN', modalidades: { online: 2524000, diurno: null, vespertino: null, semipresencial: null } },
+  { n: 'TÉCNICO EN CONECTIVIDAD Y REDES', modalidades: { online: 2290000, diurno: null, vespertino: 2601000, semipresencial: null } },
+  { n: 'TÉCNICO EN CONSTRUCCIÓN', modalidades: { online: null, diurno: null, vespertino: null, semipresencial: 2524000 } },
   { n: 'TÉCNICO EN CONTROL INDUSTRIAL', modalidades: { online: 2248000, diurno: null, vespertino: null, semipresencial: null } },
-  { n: 'TÉCNICO EN ELECTRICIDAD', modalidades: { online: 2461000, diurno: null, vespertino: null, semipresencial: null } },
+  { n: 'TÉCNICO EN ELECTRICIDAD', modalidades: { online: null, diurno: null, vespertino: null, semipresencial: 2461000 } },
   { n: 'TÉCNICO EN GESTIÓN INDUSTRIAL', modalidades: { online: 2248000, diurno: null, vespertino: null, semipresencial: null } },
   { n: 'TÉCNICO EN INFRAESTRUCTURA CLOUD', modalidades: { online: 2190000, diurno: null, vespertino: null, semipresencial: null } },
-  { n: 'TÉCNICO EN INSTALACIONES ELÉCTRICAS', modalidades: { online: 2397000, diurno: null, vespertino: null, semipresencial: null } },
+  { n: 'TÉCNICO EN INSTALACIONES ELÉCTRICAS DOMICILIARIAS', modalidades: { online: null, diurno: null, vespertino: null, semipresencial: 2397000 } },
   { n: 'TÉCNICO EN INTELIGENCIA ARTIFICIAL', modalidades: { online: 2237000, diurno: null, vespertino: null, semipresencial: null } },
   { n: 'TÉCNICO EN OPERACIONES MINERAS', modalidades: { online: 2396000, diurno: null, vespertino: null, semipresencial: null } },
   { n: 'TÉCNICO EN PREVENCIÓN DE RIESGOS', modalidades: { online: 2198000, diurno: null, vespertino: null, semipresencial: null } },
-  { n: 'TÉCNICO EN PROGRAMACIÓN COMPUTACIONAL', modalidades: { online: 2307000, diurno: 2338000, vespertino: 2559000, semipresencial: null } },
-  { n: 'TÉCNICO EN PROGRAMACIÓN Y ANÁLISIS DE SISTEMAS', modalidades: { online: 2307000, diurno: 2338000, vespertino: 2559000, semipresencial: null } },
+  { n: 'TÉCNICO EN PROGRAMACIÓN / ANÁLISIS DE SISTEMAS', modalidades: { online: 2307000, diurno: 2338000, vespertino: 2559000, semipresencial: null } },
 ];
 
 const DIPLOMADOS = [
@@ -299,65 +298,68 @@ function generarTarjeta() {
   const modalidadEtiqueta = MODALIDADES.find((m) => m.key === modSel).label;
   const descuentoNombre = `${descuentoPct}%`;
 
-  const descuentoHtml = `
-    <tr class="t-desc-row">
-      <td colspan="2"><span class="t-desc-label">✓ Descuento aplicado — ${descuentoPct}% sobre arancel + Matricula gratis</span></td>
-      <td><span class="t-desc-label"><del style="color:#9ca3af;font-size:11px">${formatMoney(arancelBase)}</del><br>${formatMoney(arancelFinal)}</span></td>
-      <td><span class="t-desc-label"><del style="color:#9ca3af;font-size:11px">${formatMoney(arancelBase / cuotasSel)}</del><br>${formatMoney(mensual)}</span></td>
-      <td><span class="t-desc-label">—</span></td>
-    </tr>`;
+  const descuentoResumenHtml = `
+    <div class="t-discount-box">
+      <div class="t-discount-header">Oferta especial</div>
+      <div class="t-discount-meta">Sin descuento <span class="t-old-price">${formatMoney(arancelBase)}</span></div>
+      <div class="t-discount-percent">${formatMoney(arancelFinal)}</div>
+      <div class="t-discount-meta">Ahorro estimado: <strong>${formatMoney(ahorro)}</strong></div>
+    </div>`;
 
   const comparadorHtml = `
-    <div class="comparador">
-      <div class="comparador-header">Comparador</div>
-      <div class="comparador-row">
-        <div class="comparador-box">
-          <span class="comparador-label">Base</span>
+    <div class="t-wa-promo">
+      <div class="t-wa-header">Comparativa</div>
+      <div class="t-wa-row">
+        <div class="t-wa-box">
+          <span>Sin beca</span>
           <strong>${formatMoney(arancelBase)}</strong>
         </div>
-        <div class="comparador-box accent">
-          <span class="comparador-label">Con ${descuentoNombre}</span>
+        <div class="t-wa-box accent">
+          <span>Con ${descuentoNombre}</span>
           <strong>${formatMoney(arancelFinal)}</strong>
         </div>
       </div>
-      <div class="comparador-total">Ahorro estimado: <strong>${formatMoney(ahorro)}</strong></div>
     </div>`;
+
+  const summaryCardsHtml = `
+    <div class="t-mobile-grid">
+      <div class="t-stat-card monthly wide">
+        <span class="t-stat-label">Mensualidad con descuento</span>
+        <div class="t-monthly-row">
+          <div>
+            <strong class="t-stat-value t-green">${formatMoney(mensual)}</strong>
+          </div>
+          <div class="t-monthly-compare">
+            <span>sin descuento</span>
+            <strong>${formatMoney(Math.round(arancelBase / cuotasSel))}</strong>
+          </div>
+        </div>
+      </div>
+      <div class="t-stat-card accent">
+        <span class="t-stat-label">Descuento</span>
+        <strong class="t-stat-value">${descuentoPct}%</strong>
+      </div>
+      <div class="t-stat-card">
+        <span class="t-stat-label">Modalidad</span>
+        <strong class="t-stat-value"><span class="t-badge">${modalidadEtiqueta}</span></strong>
+      </div>
+    </div>
+  `;
 
   elements.tarjetaContainer.innerHTML = `
     <div class="tarjeta">
-      <div class="t-titlebar">
-        <span class="t-title">${carrera.n}</span>
-        <span class="t-badge">${modalidadEtiqueta}</span>
+      <div class="t-header-banner">
+        <img src="img/banner-principal.png" alt="Banner IPSS">
+      </div>
+      <div class="t-coursebar">
+        <span class="t-course-name">${carrera.n}</span>
       </div>
       <div class="t-body">
-        <table class="t-table">
-          <thead>
-            <tr>
-              <th>Modalidad</th>
-              <th>Matrícula</th>
-              <th>Arancel Anual</th>
-              <th>Mensualidad</th>
-              <th>Cuotas</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><span class="t-badge">${modalidadEtiqueta}</span></td>
-              <td><span class="t-green">$0</span></td>
-              <td>
-                <span class="t-green">${formatMoney(arancelFinal)}</span>
-                <span class="t-strike">${formatMoney(arancelBase)}</span>
-              </td>
-              <td>
-                <span class="t-green">${formatMoney(mensual)}</span>
-                <span class="t-sub">por mes</span>
-              </td>
-              <td><span class="t-navy">${cuotasSel}</span></td>
-            </tr>
-            ${descuentoHtml}
-          </tbody>
-        </table>
+        ${descuentoResumenHtml}
         ${comparadorHtml}
+        <div class="t-mobile-summary">
+          ${summaryCardsHtml}
+        </div>
       </div>
     </div>`;
 
