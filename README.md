@@ -1,45 +1,20 @@
 # Cotizador IPSS
 
-Generador de cotizaciones para carreras y modalidades del Instituto Profesional San Sebastián.
+Aplicación web para generar cotizaciones dinámicas de carreras, diplomados y modalidades del Instituto Profesional San Sebastián.
 
-Este proyecto es una aplicación web estática para seleccionar una carrera, modalidad, cuotas y descuento, y generar una tarjeta de cotización con formato visual listo para compartir o imprimir.
+Este proyecto permite seleccionar el programa, modalidad, cuotas y descuento, y genera una tarjeta visual lista para compartir, mostrar o imprimir. Está pensado para uso institucional y comercial, con un enfoque moderno, claro y optimizado para dispositivos móviles.
 
-## Características
+## ✨ Funcionalidades
 
-- Catálogo de programas por año y diplomados
-- Selección de carrera y modalidad
-- Cálculo de matrícula, arancel anual, cuota mensual y ahorro con descuento
-- Generación visual de tarjeta de cotización
-- Diseño responsive y compatible con impresión
-- Banner institucional integrado en la tarjeta
+- Catálogo de programas y diplomados
+- Selección de carrera, modalidad y cuotas
+- Cálculo automático de arancel, descuento y cuota mensual
+- Generación de tarjeta de cotización visual
+- Diseño responsivo y mobile-first
+- Banner institucional integrado en la interfaz
+- Listo para deployment en GitHub Pages
 
-## Requisitos
-
-- Navegador web moderno
-- Python 3 (opcional, para servir archivos localmente)
-
-## Cómo correrlo localmente
-
-1. Abre una terminal en la raíz del proyecto.
-2. Ejecuta cualquiera de estas opciones:
-
-```bash
-bash start.sh
-```
-
-O directamente:
-
-```bash
-python3 -m http.server 8000
-```
-
-3. Abre en tu navegador:
-
-```text
-http://localhost:8000/
-```
-
-## Estructura del proyecto
+## 🧩 Estructura del proyecto
 
 ```text
 cotizador/
@@ -52,20 +27,47 @@ cotizador/
 ├── img/
 │   └── banner-principal.png
 ├── excel/
+├── verify_diplomados.py
+├── inspect_excel.py
 └── ...
 ```
 
-## Archivos principales
+## 🚀 Cómo ejecutarlo localmente
 
-- `index.html` — punto de entrada para la aplicación
-- `cotizador_ipss_v2.html` — interfaz principal del cotizador
-- `cotizador_ipss.js` — lógica del catálogo y cálculo de cotización
-- `cotizador_ipss.css` — estilos visuales de la aplicación y la tarjeta
+### Opción 1: script incluido
 
-## Nota
+```bash
+bash start.sh
+```
 
-El proyecto es frontend estático y no requiere backend para funcionar. Está preparado para ser desplegado en GitHub Pages o servido localmente con un servidor HTTP simple.
+### Opción 2: servidor HTTP simple
 
-## Licencia
+```bash
+python -m http.server 8000
+```
 
-Este proyecto está pensado para uso interno y de demostración. Ajusta la licencia según el uso final que le quieras dar.
+Luego abre en tu navegador:
+
+```text
+http://localhost:8000/
+```
+
+## 📁 Archivos principales
+
+- `index.html` — entrada principal de la aplicación
+- `cotizador_ipss_v2.html` — vista principal del cotizador
+- `cotizador_ipss.js` — lógica, datos y cálculo de la cotización
+- `cotizador_ipss.css` — estilos y diseño visual
+- `img/banner-principal.png` — banner institucional usado en la tarjeta
+
+## 🌐 Despliegue
+
+El proyecto está preparado para ser publicado en GitHub Pages o cualquier hosting estático.
+
+## 📝 Nota
+
+Es una aplicación frontend estática sin backend, por lo que no requiere configuración adicional para funcionar en entorno local o de demostración.
+
+## 📜 Licencia
+
+Proyecto orientado a uso interno y demostración institucional. Ajusta la licencia según el uso final que le quieras dar.
