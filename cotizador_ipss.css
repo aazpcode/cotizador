@@ -643,15 +643,16 @@ select:focus,
 }
 
 .t-stat-card.monthly {
-  min-height: 96px;
-  background: linear-gradient(180deg, #f6fff9, #eefcf3);
+  min-height: 104px;
+  background: linear-gradient(180deg, #f7fff9 0%, #edfdf2 100%);
   border-color: #bfecc9;
-  box-shadow: 0 0 0 1px rgba(31, 122, 69, 0.06);
+  box-shadow: 0 10px 18px rgba(22, 101, 52, 0.08), inset 0 1px 0 rgba(255,255,255,0.8);
 }
 
 .t-stat-card.monthly .t-stat-value {
-  font-size: 28px;
-  line-height: 1.1;
+  font-size: 34px;
+  line-height: 1.05;
+  letter-spacing: -0.8px;
 }
 
 .t-stat-card.wide {
@@ -666,11 +667,19 @@ select:focus,
   align-items: center;
 }
 
+.t-monthly-main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
 .t-monthly-compare {
-  background: rgba(255,255,255,0.5);
-  border-radius: 8px;
-  padding: 6px 6px;
+  background: rgba(255,255,255,0.72);
+  border-radius: 10px;
+  padding: 7px 8px;
   border: 1px solid rgba(15, 138, 70, 0.18);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.8);
 }
 
 .t-monthly-compare span {
@@ -683,10 +692,20 @@ select:focus,
 
 .t-monthly-compare strong {
   display: block;
-  font-size: 12px;
+  font-size: 13px;
   color: #475569;
   text-decoration: line-through;
   margin-top: 2px;
+}
+
+.t-monthly-cuotas {
+  display: block;
+  margin-top: 4px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  color: #166534;
+  text-transform: uppercase;
 }
 
 .t-stat-label {

@@ -326,8 +326,9 @@ function generarTarjeta() {
       <div class="t-stat-card monthly wide">
         <span class="t-stat-label">Mensualidad con descuento</span>
         <div class="t-monthly-row">
-          <div>
+          <div class="t-monthly-main">
             <strong class="t-stat-value t-green">${formatMoney(mensual)}</strong>
+            <span class="t-monthly-cuotas">${cuotasSel} cuotas</span>
           </div>
           <div class="t-monthly-compare">
             <span>sin descuento</span>
