@@ -606,6 +606,50 @@ select:focus,
   padding: 16px 18px 14px;
 }
 
+.t-availability {
+  margin: 12px 0;
+}
+
+.t-availability-title {
+  display: block;
+  margin-bottom: 7px;
+  text-align: center;
+  color: #64748b;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+}
+
+.t-campus-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.t-availability .t-campus-options {
+  justify-content: center;
+}
+
+.t-campus-chip {
+  display: inline-flex;
+  align-items: center;
+  min-height: 28px;
+  padding: 5px 9px;
+  border: 1px solid #b5ddd2;
+  border-radius: 6px;
+  background: #e7f5f1;
+  color: #126456;
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 1.25;
+}
+
+.t-availability-empty {
+  color: #64748b;
+  font-size: 11px;
+}
+
 .t-mobile-summary {
   display: block;
 }

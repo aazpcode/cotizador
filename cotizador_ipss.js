@@ -5,6 +5,107 @@ const MODALIDADES = [
   { key: 'semipresencial', label: 'Semipresencial' },
 ];
 
+const DISPONIBILIDAD_SEDES = {
+  'ADMINISTRACION PUBLICA': ['Online'],
+  'AUDITORIA': ['Online'],
+  'CONTABILIDAD GENERAL': ['Online'],
+  'INGENIERIA EN COMERCIO EXTERIOR': ['Online'],
+  'TECNICO EN COMERCIO EXTERIOR': ['Online'],
+  'TECNICO EN ADMINISTRACION DE EMPRESAS': ['Online', 'Santiago · Vespertino', 'Patagonia · Vespertino'],
+  'INGENIERIA EN ADMINISTRACION DE EMPRESAS': ['Online', 'Santiago · Vespertino', 'Patagonia · Vespertino'],
+  'TECNICO EN MARKETING DIGITAL': ['Online'],
+  'TECNICO EN LOGISTICA': ['Online'],
+  'INGENIERIA EN LOGISTICA': ['Online'],
+  'INGENIERIA EN MARKETING DIGITAL': ['Online'],
+  'TECNICO EN RECURSOS HUMANOS': ['Online'],
+  'TECNICO EN RRHH': ['Online'],
+  'INGENIERIA EN RECURSOS HUMANOS': ['Online'],
+  'INGENIERIA EN RRHH': ['Online'],
+  'INGENIERIA EN FINANZAS': ['Online'],
+  'TECNICO EN FINANZAS': ['Online'],
+  'INGENIERIA EN SEGURIDAD PRIVADA': ['Online'],
+  'TECNICO EN ADMINISTRACION PUBLICA': ['Online'],
+  'TECNICO VETERINARIO': ['Santiago · Semipresencial', 'Concepción · Semipresencial'],
+  'TECNICO VETERINARIO (ANIMALES DE COMPANIA)': ['Santiago · Semipresencial', 'Concepción · Semipresencial'],
+  'TECNICO EN ODONTOLOGIA': ['Concepción · Semipresencial'],
+  'TECNICO EN IMAGENOLOGIA': ['Santiago · Semipresencial', 'Concepción · Semipresencial'],
+  'TECNICO EN FARMACIA': ['Santiago · Semipresencial', 'Concepción · Semipresencial', 'Patagonia · Semipresencial'],
+  'TECNICO EN ENFERMERIA': ['Santiago · Diurna', 'Santiago · Vespertino', 'Santiago · Semipresencial', 'Concepción · Diurna', 'Concepción · Vespertino', 'Concepción · Semipresencial'],
+  'TECNICO EN ENFERMERIA E INSTRUMENTACION QUIRURGICA': ['Santiago · Diurna', 'Santiago · Vespertino', 'Concepción · Diurna', 'Concepción · Semipresencial'],
+  'NATUROPATIA': ['Santiago · Vespertino'],
+  'INGENIERIA EN CONSTRUCCION': ['Santiago · Semipresencial', 'Concepción · Semipresencial'],
+  'TECNICO EN CONSTRUCCION': ['Santiago · Semipresencial', 'Concepción · Semipresencial'],
+  'INGENIERIA EN INTELIGENCIA ARTIFICIAL': ['Online'],
+  'TECNICO EN INTELIGENCIA ARTIFICIAL': ['Online'],
+  'INGENIERIA EN OPERACIONES MINERAS': ['Online'],
+  'TECNICO EN OPERACIONES MINERAS': ['Online'],
+  'INGENIERIA EN ARQUITECTURA CLOUD': ['Online'],
+  'INGENIERIA EN ELECTRICIDAD': ['Santiago · Semipresencial', 'Concepción · Semipresencial'],
+  'TECNICO EN ELECTRICIDAD': ['Santiago · Semipresencial', 'Concepción · Semipresencial'],
+  'TECNICO EN GESTION INDUSTRIAL': ['Online'],
+  'TECNICO EN INSTALACIONES ELECTRICAS DOMICILIARIAS': ['Santiago · Semipresencial', 'Concepción · Semipresencial'],
+  'TECNICO EN CONTROL INDUSTRIAL': ['Online'],
+  'INGENIERIA EN CIBERSEGURIDAD': ['Online', 'Santiago · Vespertino'],
+  'INGENIERIA EN INFORMATICA': ['Online'],
+  'TECNICO EN PROGRAMACION Y ANALISIS DE SISTEMAS': ['Online'],
+  'TECNICO EN PROGRAMACION / ANALISIS DE SISTEMAS': ['Online'],
+  'TECNICO EN CIBERSEGURIDAD': ['Online'],
+  'INGENIERIA INDUSTRIAL': ['Online'],
+  'INGENIERIA EN CONECTIVIDAD Y REDES': ['Online'],
+  'INGENIERIA EN PREVENCION DE RIESGOS': ['Online'],
+  'INGENIERIA EN CIENCIA DE DATOS': ['Online'],
+  'TECNICO EN PREVENCION DE RIESGOS': ['Online'],
+  'TECNICO EN CIENCIA DE DATOS': ['Online'],
+  'TECNICO EN INFRAESTRUCTURA CLOUD': ['Online'],
+  'TECNICO EN CONECTIVIDAD Y REDES': ['Online'],
+};
+
+function normalizarNombreCarrera(nombre) {
+  return nombre
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .toUpperCase()
+    .trim();
+}
+
+function obtenerSedesDisponibles(carrera, modalidad) {
+  if (!carrera || !modalidad) return [];
+
+  const modalidadEtiqueta = {
+    online: 'Online',
+    diurno: 'Diurna',
+    vespertino: 'Vespertino',
+    semipresencial: 'Semipresencial',
+  }[modalidad];
+  const disponibilidades = DISPONIBILIDAD_SEDES[normalizarNombreCarrera(carrera.n)] || [];
+
+  return disponibilidades
+    .filter((disponibilidad) => disponibilidad === 'Online'
+      ? modalidad === 'online'
+      : disponibilidad.endsWith(` · ${modalidadEtiqueta}`))
+    .map((disponibilidad) => disponibilidad === 'Online'
+      ? 'Online'
+      : disponibilidad.slice(0, disponibilidad.lastIndexOf(' · ')));
+}
+
+function renderSedesDisponibles(carrera, modalidad) {
+  if (!carrera) return '<span class="t-availability-empty">Selecciona una carrera</span>';
+  if (!modalidad) return '<span class="t-availability-empty">Selecciona una modalidad</span>';
+
+  const claveCarrera = normalizarNombreCarrera(carrera.n);
+  if (!DISPONIBILIDAD_SEDES[claveCarrera]) {
+    return '<span class="t-availability-empty">Disponibilidad no informada</span>';
+  }
+
+  const sedes = obtenerSedesDisponibles(carrera, modalidad);
+  if (sedes.length === 0) {
+    const etiqueta = MODALIDADES.find((item) => item.key === modalidad)?.label || modalidad;
+    return `<span class="t-availability-empty">Sin sedes informadas para ${etiqueta}</span>`;
+  }
+
+  return sedes.map((sede) => `<span class="t-campus-chip">${sede}</span>`).join('');
+}
+
 const CARRERAS = [
   { n: 'ADMINISTRACIÓN PÚBLICA', modalidades: { online: 2000000, diurno: null, vespertino: null } },
   { n: 'AUDITORÍA', modalidades: { online: 1995000, diurno: null, vespertino: null } },
@@ -29,7 +130,7 @@ const CARRERAS = [
   { n: 'TÉCNICO EN CONECTIVIDAD Y REDES', modalidades: { online: 2175000, diurno: 2220000, vespertino: 2470000 } },
   { n: 'TÉCNICO EN ENFERMERÍA', modalidades: { online: null, diurno: 2090000, vespertino: 2110000 } },
   { n: 'TÉCNICO EN ENFERMERÍA E INSTRUMENTACIÓN QUIRÚRGICA', modalidades: { online: null, diurno: null, vespertino: 1890000 } },
-  { n: 'TÉCNICO EN FARMACIA', modalidades: { online: null, diurno: null, vespertino: 1980000 } },
+  { n: 'TÉCNICO EN FARMACIA', modalidades: { online: null, diurno: null, semipresencial: 1980000 } },
   { n: 'TÉCNICO EN FINANZAS', modalidades: { online: 1980000, diurno: null, vespertino: null } },
   { n: 'TÉCNICO EN INFRAESTRUCTURA CLOUD', modalidades: { online: 1980000, diurno: null, vespertino: null } },
   { n: 'TÉCNICO EN LOGÍSTICA', modalidades: { online: 2060000, diurno: 1980000, vespertino: 1995000 } },
@@ -42,7 +143,7 @@ const CARRERAS = [
 const CARRERAS_2027 = [
   { n: 'ADMINISTRACIÓN PÚBLICA', modalidades: { online: 2106000, diurno: null, vespertino: null, semipresencial: null } },
   { n: 'AUDITORÍA', modalidades: { online: 2214000, diurno: null, vespertino: null, semipresencial: null } },
-  { n: 'INGENIERÍA EN ADMINISTRACIÓN DE EMPRESAS', modalidades: { online: 2169000, diurno: 2085000, vespertino: 2204000, semipresencial: null } },
+  { n: 'INGENIERÍA EN ADMINISTRACIÓN DE EMPRESAS', modalidades: { online: 2169000, diurno: null, vespertino: 2204000, semipresencial: null } },
   { n: 'INGENIERÍA EN COMERCIO EXTERIOR', modalidades: { online: 2198000, diurno: null, vespertino: null, semipresencial: null } },
   { n: 'INGENIERÍA EN FINANZAS', modalidades: { online: 2085000, diurno: null, vespertino: null, semipresencial: null } },
   { n: 'INGENIERÍA EN LOGÍSTICA', modalidades: { online: 2169000, diurno: null, vespertino: 2101000, semipresencial: null } },
@@ -50,7 +151,7 @@ const CARRERAS_2027 = [
   { n: 'INGENIERÍA EN RRHH', modalidades: { online: 2237000, diurno: null, vespertino: null, semipresencial: null } },
   { n: 'INGENIERÍA EN SEGURIDAD PRIVADA', modalidades: { online: 2060000, diurno: null, vespertino: null, semipresencial: null } },
   { n: 'CONTABILIDAD GENERAL', modalidades: { online: 2214000, diurno: null, vespertino: null, semipresencial: null } },
-  { n: 'TÉCNICO EN ADMINISTRACIÓN DE EMPRESAS', modalidades: { online: 2169000, diurno: 2085000, vespertino: 2204000, semipresencial: null } },
+  { n: 'TÉCNICO EN ADMINISTRACIÓN DE EMPRESAS', modalidades: { online: 2169000, diurno: null, vespertino: 2204000, semipresencial: null } },
   { n: 'TÉCNICO EN ADMINISTRACIÓN PÚBLICA', modalidades: { online: 2106000, diurno: null, vespertino: null, semipresencial: null } },
   { n: 'TÉCNICO EN COMERCIO EXTERIOR', modalidades: { online: 2198000, diurno: null, vespertino: null, semipresencial: null } },
   { n: 'TÉCNICO EN FINANZAS', modalidades: { online: 2085000, diurno: null, vespertino: null, semipresencial: null } },
@@ -116,6 +217,7 @@ const elements = {
   categoria: document.getElementById('selCategoria'),
   carrera: document.getElementById('selCarrera'),
   carrerasList: document.getElementById('carrerasList'),
+  sedesDisponibles: document.getElementById('sedesDisponibles'),
   preview: document.getElementById('previewSection'),
   tarjetaContainer: document.getElementById('tarjetaContainer'),
   notif: document.getElementById('notif'),
@@ -238,6 +340,7 @@ function actualizarCatalogo() {
   });
   fillCarreras();
   resetModalidades();
+  actualizarSedesDisponibles();
   actualizarCuotasDisponibles();
   elements.preview.classList.remove('visible');
   elements.tarjetaContainer.innerHTML = '';
@@ -251,13 +354,21 @@ function seleccionarCatalogo(catalogo) {
 function actualizarModalidades() {
   resetModalidades();
   const carrera = getCarrera();
-  if (!carrera) return;
+  if (!carrera) {
+    actualizarSedesDisponibles();
+    return;
+  }
   elements.botonesModalidad.forEach((boton) => {
     const key = boton.id.replace('btn-', '');
     if (carrera.modalidades[key] == null) {
       boton.classList.add('disabled');
     }
   });
+  actualizarSedesDisponibles();
+}
+
+function actualizarSedesDisponibles() {
+  elements.sedesDisponibles.innerHTML = renderSedesDisponibles(getCarrera(), modSel);
 }
 
 function seleccionarModalidad(key) {
@@ -269,6 +380,8 @@ function seleccionarModalidad(key) {
   elements.botonesModalidad.forEach((boton) => {
     boton.classList.toggle('active', boton.id === `btn-${key}`);
   });
+  actualizarSedesDisponibles();
+  if (elements.preview.classList.contains('visible')) generarTarjeta(false);
 }
 
 function seleccionarCuotas(cuotas) {
@@ -281,7 +394,7 @@ function seleccionarCuotas(cuotas) {
   });
 }
 
-function generarTarjeta() {
+function generarTarjeta(desplazar = true) {
   const carrera = getCarrera();
   if (!carrera) {
     return mostrarNotif('⚠️ Selecciona una carrera');
@@ -297,6 +410,7 @@ function generarTarjeta() {
   const mensual = Math.round(arancelFinal / cuotasSel);
   const modalidadEtiqueta = MODALIDADES.find((m) => m.key === modSel).label;
   const descuentoNombre = `${descuentoPct}%`;
+  const disponibilidadHtml = renderSedesDisponibles(carrera, modSel);
 
   const descuentoResumenHtml = `
     <div class="t-discount-box">
@@ -358,6 +472,10 @@ function generarTarjeta() {
       <div class="t-body">
         ${descuentoResumenHtml}
         ${comparadorHtml}
+        <div class="t-availability">
+          <span class="t-availability-title">Sedes y modalidades disponibles</span>
+          <div class="t-campus-options">${disponibilidadHtml}</div>
+        </div>
         <div class="t-mobile-summary">
           ${summaryCardsHtml}
         </div>
@@ -365,7 +483,7 @@ function generarTarjeta() {
     </div>`;
 
   elements.preview.classList.add('visible');
-  elements.preview.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  if (desplazar) elements.preview.scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
 function mostrarCaptura() {
