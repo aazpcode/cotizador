@@ -82,10 +82,7 @@ function obtenerSedesDisponibles(carrera, modalidad) {
   return disponibilidades
     .filter((disponibilidad) => disponibilidad === 'Online'
       ? modalidad === 'online'
-      : disponibilidad.endsWith(` · ${modalidadEtiqueta}`))
-    .map((disponibilidad) => disponibilidad === 'Online'
-      ? 'Online'
-      : disponibilidad.slice(0, disponibilidad.lastIndexOf(' · ')));
+      : disponibilidad.endsWith(` · ${modalidadEtiqueta}`));
 }
 
 function renderSedesDisponibles(carrera, modalidad) {
@@ -408,7 +405,6 @@ function generarTarjeta(desplazar = true) {
   const arancelFinal = Math.round(arancelBase * (1 - descuentoPct / 100));
   const ahorro = Math.max(0, arancelBase - arancelFinal);
   const mensual = Math.round(arancelFinal / cuotasSel);
-  const modalidadEtiqueta = MODALIDADES.find((m) => m.key === modSel).label;
   const descuentoNombre = `${descuentoPct}%`;
   const disponibilidadHtml = renderSedesDisponibles(carrera, modSel);
 
@@ -450,13 +446,9 @@ function generarTarjeta(desplazar = true) {
           </div>
         </div>
       </div>
-      <div class="t-stat-card accent">
+      <div class="t-stat-card accent wide">
         <span class="t-stat-label">Descuento</span>
         <strong class="t-stat-value">${descuentoPct}%</strong>
-      </div>
-      <div class="t-stat-card">
-        <span class="t-stat-label">Modalidad</span>
-        <strong class="t-stat-value"><span class="t-badge">${modalidadEtiqueta}</span></strong>
       </div>
     </div>
   `;
