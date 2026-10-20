@@ -31,7 +31,7 @@ const DISPONIBILIDAD_SEDES = {
   'TECNICO EN IMAGENOLOGIA': ['Santiago · Semipresencial', 'Concepción · Semipresencial'],
   'TECNICO EN FARMACIA': ['Santiago · Semipresencial', 'Concepción · Semipresencial', 'Patagonia · Semipresencial'],
   'TECNICO EN ENFERMERIA': ['Santiago · Diurna', 'Santiago · Vespertino', 'Santiago · Semipresencial', 'Concepción · Diurna', 'Concepción · Vespertino', 'Concepción · Semipresencial'],
-  'TECNICO EN ENFERMERIA E INSTRUMENTACION QUIRURGICA': ['Santiago · Diurna', 'Santiago · Vespertino', 'Concepción · Diurna', 'Concepción · Semipresencial', 'Patagonia · Vespertino'],
+  'TECNICO EN ENFERMERIA E INSTRUMENTACION QUIRURGICA': ['Santiago · Diurna', 'Santiago · Vespertino', 'Concepción · Diurna', 'Concepción · Vespertino', 'Concepción · Semipresencial', 'Patagonia · Vespertino'],
   'NATUROPATIA': ['Santiago · Vespertino'],
   'INGENIERIA EN CONSTRUCCION': ['Santiago · Semipresencial', 'Concepción · Semipresencial'],
   'TECNICO EN CONSTRUCCION': ['Santiago · Semipresencial', 'Concepción · Semipresencial'],
