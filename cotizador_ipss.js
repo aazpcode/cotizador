@@ -419,7 +419,6 @@ function generarTarjeta(desplazar = true) {
       <div class="t-coursebar">
         <span class="t-course-name">${carrera.n}</span>
         <div class="quote-tags">
-          <span class="quote-tag">${catalogo.label}</span>
           <span class="quote-tag">${modalidad}</span>
         </div>
       </div>
