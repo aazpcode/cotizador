@@ -9,7 +9,7 @@ Este proyecto permite seleccionar el programa, modalidad, cuotas y descuento, y 
 - Catálogo de programas y diplomados
 - Selección de carrera, modalidad y cuotas
 - Cálculo automático de arancel, descuento y cuota mensual
-- Generación de tarjeta de cotización visual
+- Generación de tarjeta compacta lista para compartir como captura por WhatsApp
 - Diseño responsivo y mobile-first
 - Banner institucional integrado en la interfaz
 - Listo para deployment en GitHub Pages

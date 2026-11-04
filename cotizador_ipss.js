@@ -11,8 +11,8 @@ const DISPONIBILIDAD_SEDES = {
   'CONTABILIDAD GENERAL': ['Online'],
   'INGENIERIA EN COMERCIO EXTERIOR': ['Online'],
   'TECNICO EN COMERCIO EXTERIOR': ['Online'],
-  'TECNICO EN ADMINISTRACION DE EMPRESAS': ['Online', 'Santiago · Vespertino', 'Patagonia · Vespertino'],
-  'INGENIERIA EN ADMINISTRACION DE EMPRESAS': ['Online', 'Santiago · Vespertino', 'Patagonia · Vespertino'],
+  'TECNICO EN ADMINISTRACION DE EMPRESAS': ['Online', 'Santiago · Vespertino'],
+  'INGENIERIA EN ADMINISTRACION DE EMPRESAS': ['Online', 'Santiago · Vespertino'],
   'TECNICO EN MARKETING DIGITAL': ['Online'],
   'TECNICO EN LOGISTICA': ['Online'],
   'INGENIERIA EN LOGISTICA': ['Online'],
@@ -30,7 +30,7 @@ const DISPONIBILIDAD_SEDES = {
   'TECNICO EN ODONTOLOGIA': ['Concepción · Semipresencial'],
   'TECNICO EN IMAGENOLOGIA': ['Santiago · Semipresencial', 'Concepción · Semipresencial'],
   'TECNICO EN FARMACIA': ['Santiago · Semipresencial','Santiago · Vespertino', 'Concepción · Semipresencial','Concepción · Vespertino', 'Patagonia · Vespertino','Patagonia · Semipresencial'],
-  'TECNICO EN ENFERMERIA': ['Santiago · Diurna', 'Santiago · Vespertino', 'Santiago · Semipresencial', 'Concepción · Diurna', 'Concepción · Vespertino', 'Concepción · Semipresencial'],
+  'TECNICO EN ENFERMERIA': ['Santiago · Diurna', 'Santiago · Vespertino', 'Santiago · Semipresencial', 'Concepción · Diurna', 'Concepción · Vespertino', 'Concepción · Semipresencial', 'Patagonia · Vespertino'],
   'TECNICO EN ENFERMERIA E INSTRUMENTACION QUIRURGICA': ['Santiago · Diurna', 'Santiago · Vespertino', 'Concepción · Diurna', 'Concepción · Vespertino', 'Concepción · Semipresencial', 'Patagonia · Vespertino'],
   'NATUROPATIA': ['Santiago · Vespertino'],
   'INGENIERIA EN CONSTRUCCION': ['Santiago · Semipresencial', 'Concepción · Semipresencial'],
@@ -350,6 +350,7 @@ function seleccionarCatalogo(catalogo) {
 
 function actualizarModalidades() {
   resetModalidades();
+  elements.preview.classList.remove('visible');
   const carrera = getCarrera();
   if (!carrera) {
     actualizarSedesDisponibles();
@@ -389,6 +390,7 @@ function seleccionarCuotas(cuotas) {
   Object.entries(elements.botonesCuotas).forEach(([valor, boton]) => {
     boton.classList.toggle('active', Number(valor) === cuotas);
   });
+  if (elements.preview.classList.contains('visible')) generarTarjeta(false);
 }
 
 function generarTarjeta(desplazar = true) {
@@ -405,53 +407,9 @@ function generarTarjeta(desplazar = true) {
   const arancelFinal = Math.round(arancelBase * (1 - descuentoPct / 100));
   const ahorro = Math.max(0, arancelBase - arancelFinal);
   const mensual = Math.round(arancelFinal / cuotasSel);
-  const descuentoNombre = `${descuentoPct}%`;
+  const catalogo = getCatalogoActual();
+  const modalidad = MODALIDADES.find((item) => item.key === modSel)?.label || modSel;
   const disponibilidadHtml = renderSedesDisponibles(carrera, modSel);
-
-  const descuentoResumenHtml = `
-    <div class="t-discount-box">
-      <div class="t-discount-header">Oferta especial</div>
-      <div class="t-discount-meta">Sin descuento <span class="t-old-price">${formatMoney(arancelBase)}</span></div>
-      <div class="t-discount-percent">${formatMoney(arancelFinal)}</div>
-      <div class="t-discount-meta">Ahorro estimado: <strong>${formatMoney(ahorro)}</strong></div>
-    </div>`;
-
-  const comparadorHtml = `
-    <div class="t-wa-promo">
-      <div class="t-wa-header">Comparativa</div>
-      <div class="t-wa-row">
-        <div class="t-wa-box">
-          <span>Sin beca</span>
-          <strong>${formatMoney(arancelBase)}</strong>
-        </div>
-        <div class="t-wa-box accent">
-          <span>Con ${descuentoNombre}</span>
-          <strong>${formatMoney(arancelFinal)}</strong>
-        </div>
-      </div>
-    </div>`;
-
-  const summaryCardsHtml = `
-    <div class="t-mobile-grid">
-      <div class="t-stat-card monthly wide">
-        <span class="t-stat-label">Mensualidad con descuento</span>
-        <div class="t-monthly-row">
-          <div class="t-monthly-main">
-            <strong class="t-stat-value t-green">${formatMoney(mensual)}</strong>
-            <span class="t-monthly-cuotas">${cuotasSel} cuotas</span>
-          </div>
-          <div class="t-monthly-compare">
-            <span>sin descuento</span>
-            <strong>${formatMoney(Math.round(arancelBase / cuotasSel))}</strong>
-          </div>
-        </div>
-      </div>
-      <div class="t-stat-card accent wide">
-        <span class="t-stat-label">Descuento</span>
-        <strong class="t-stat-value">${descuentoPct}%</strong>
-      </div>
-    </div>
-  `;
 
   elements.tarjetaContainer.innerHTML = `
     <div class="tarjeta">
@@ -460,16 +418,35 @@ function generarTarjeta(desplazar = true) {
       </div>
       <div class="t-coursebar">
         <span class="t-course-name">${carrera.n}</span>
+        <div class="quote-tags">
+          <span class="quote-tag">${catalogo.label}</span>
+          <span class="quote-tag">${modalidad}</span>
+        </div>
       </div>
       <div class="t-body">
-        ${descuentoResumenHtml}
-        ${comparadorHtml}
-        <div class="t-availability">
-          <span class="t-availability-title">Sedes y modalidades disponibles</span>
-          <div class="t-campus-options">${disponibilidadHtml}</div>
+        <div class="quote-monthly">
+          <span class="quote-label">Mensualidad</span>
+          <strong>${formatMoney(mensual)}</strong>
+          <span class="quote-installments">en ${cuotasSel} cuotas</span>
         </div>
-        <div class="t-mobile-summary">
-          ${summaryCardsHtml}
+        <div class="quote-prices">
+          <div class="quote-price">
+            <span>Arancel referencial</span>
+            <strong>${formatMoney(arancelBase)}</strong>
+          </div>
+          <div class="quote-price quote-price-final">
+            <span>Arancel con descuento</span>
+            <strong>${formatMoney(arancelFinal)}</strong>
+          </div>
+        </div>
+        <div class="quote-savings">
+          <span class="quote-savings-label">Descuento aplicado</span>
+          <strong>${descuentoPct}%</strong>
+          <span class="quote-savings-amount">Ahorro estimado: ${formatMoney(ahorro)}</span>
+        </div>
+        <div class="t-availability quote-availability">
+          <span class="t-availability-title">Sedes disponibles</span>
+          <div class="t-campus-options">${disponibilidadHtml}</div>
         </div>
       </div>
     </div>`;
@@ -538,6 +515,7 @@ function init() {
     elements.descuento.addEventListener('change', () => {
       const value = Number(elements.descuento.value || 0);
       mostrarNotif(`💸 Descuento activo: ${value}%`);
+      if (elements.preview.classList.contains('visible')) generarTarjeta(false);
     });
   }
   document.querySelector('.btn-gen').addEventListener('click', generarTarjeta);

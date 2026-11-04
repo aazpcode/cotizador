@@ -219,6 +219,19 @@ h1.app-title {
   box-shadow: var(--shadow);
 }
 
+.preview-section {
+  display: none;
+  max-width: 460px;
+  padding: 18px 20px;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+}
+
+.preview-section.visible {
+  display: block;
+}
+
 .panel-title,
 .preview-label {
   font-size: 11px;
@@ -582,14 +595,14 @@ select:focus,
 .t-header-banner img {
   display: block;
   width: 100%;
-  max-height: 110px;
+  max-height: 76px;
   object-fit: cover;
   object-position: center;
 }
 
 .t-coursebar {
   background: linear-gradient(135deg, #0d3a63 0%, #0a2d4d 100%);
-  padding: 14px 18px;
+  padding: 13px 16px;
   border-bottom: 1px solid rgba(255,255,255,0.08);
 }
 
@@ -603,7 +616,175 @@ select:focus,
 }
 
 .t-body {
-  padding: 16px 18px 14px;
+  padding: 14px 16px 12px;
+}
+
+.quote-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 9px;
+}
+
+.quote-tag {
+  padding: 4px 9px;
+  border: 1px solid rgba(255, 255, 255, 0.24);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.quote-monthly {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 13px 10px 11px;
+  border: 1px solid #bfecc9;
+  border-radius: 13px;
+  background: linear-gradient(180deg, #f3fff6, #e7f8ec);
+  text-align: center;
+}
+
+.quote-label {
+  color: #166534;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.quote-monthly strong {
+  margin-top: 2px;
+  color: #0f7a3d;
+  font-size: 32px;
+  line-height: 1.15;
+}
+
+.quote-installments {
+  margin-top: 2px;
+  color: #166534;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.quote-prices {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+  margin-top: 9px;
+}
+
+.quote-price {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  padding: 9px 6px;
+  border: 1px solid #dfe7f1;
+  border-radius: 10px;
+  background: #fff;
+  text-align: center;
+}
+
+.quote-price span {
+  color: #64748b;
+  font-size: 9px;
+  font-weight: 700;
+  line-height: 1.25;
+  text-transform: uppercase;
+}
+
+.quote-price strong {
+  color: #334155;
+  font-size: 14px;
+}
+
+.quote-price-final {
+  border-color: #bfdbfe;
+  background: #f0f7ff;
+}
+
+.quote-price-final strong {
+  color: #183d68;
+}
+
+.quote-savings {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  margin-top: 9px;
+  padding: 9px 10px 8px;
+  border: 1px solid #bfecc9;
+  border-radius: 11px;
+  background: linear-gradient(180deg, #f3fff6, #e7f8ec);
+  color: #166534;
+  text-align: center;
+}
+
+.quote-savings strong {
+  color: #0f7a3d;
+  font-size: 32px;
+  line-height: 1;
+  font-weight: 800;
+}
+
+.quote-savings-label {
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.9px;
+  text-transform: uppercase;
+}
+
+.quote-savings-amount {
+  margin-top: 2px;
+  font-size: 10px;
+}
+
+.quote-availability {
+  margin: 11px 0 0;
+  padding-top: 10px;
+  border-top: 1px solid #e5eaf1;
+}
+
+@media (max-width: 640px) {
+  .preview-section {
+    padding: 10px 0 0;
+  }
+
+  .tarjeta {
+    max-width: 100%;
+    border-radius: 16px;
+  }
+
+  .t-header-banner img {
+    max-height: 64px;
+  }
+
+  .t-coursebar {
+    padding: 12px;
+  }
+
+  .t-course-name {
+    font-size: 13px;
+    line-height: 1.25;
+  }
+
+  .t-body {
+    padding: 12px;
+  }
+
+  .quote-monthly strong {
+    font-size: 29px;
+  }
+
+  .quote-savings strong {
+    font-size: 30px;
+  }
 }
 
 .t-availability {
