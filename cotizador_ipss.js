@@ -42,6 +42,9 @@ const DISPONIBILIDAD_SEDES = {
   'INGENIERIA EN ARQUITECTURA CLOUD': ['Online'],
   'INGENIERIA EN ELECTRICIDAD': ['Santiago · Semipresencial', 'Concepción · Semipresencial'],
   'TECNICO EN ELECTRICIDAD': ['Santiago · Semipresencial', 'Concepción · Semipresencial'],
+  'TECNICO EN MANTENIMIENTO INDUSTRIAL': ['Santiago · Semipresencial'],
+  'INGENIERIA EN AUTOMATIZACION Y CONTROL INDUSTRIAL': ['Online'],
+  'TECNICO EN AUTOMATIZACION Y CONTROL INDUSTRIAL': ['Online'],
   'TECNICO EN GESTION INDUSTRIAL': ['Online'],
   'TECNICO EN INSTALACIONES ELECTRICAS': ['Santiago · Semipresencial', 'Concepción · Semipresencial'],
   'TECNICO EN CONTROL INDUSTRIAL': ['Online'],
@@ -169,6 +172,7 @@ const CARRERAS_2027 = [
   { n: 'INGENIERÍA EN CONSTRUCCIÓN', modalidades: { online: null, diurno: null, vespertino: null, semipresencial: 2524000 } },
   { n: 'INGENIERÍA EN ELECTRICIDAD', modalidades: { online: null, diurno: null, vespertino: null, semipresencial: 2461000 } },
   { n: 'INGENIERÍA EN INFORMÁTICA', modalidades: { online: 2359000, diurno: 2338000, vespertino: 2430000, semipresencial: null } },
+  { n: 'INGENIERÍA EN AUTOMATIZACIÓN Y CONTROL INDUSTRIAL', modalidades: { online: 2248000, diurno: null, vespertino: null, semipresencial: null } },
   { n: 'INGENIERÍA EN INTELIGENCIA ARTIFICIAL', modalidades: { online: 2237000, diurno: null, vespertino: null, semipresencial: null } },
   { n: 'INGENIERÍA EN OPERACIONES MINERAS', modalidades: { online: 2396000, diurno: null, vespertino: null, semipresencial: null } },
   { n: 'INGENIERÍA EN PREVENCIÓN DE RIESGOS', modalidades: { online: 2198000, diurno: null, vespertino: null, semipresencial: null } },
@@ -180,6 +184,8 @@ const CARRERAS_2027 = [
   { n: 'TÉCNICO EN CONTROL INDUSTRIAL', modalidades: { online: 2248000, diurno: null, vespertino: null, semipresencial: null } },
   { n: 'TÉCNICO EN ELECTRICIDAD', modalidades: { online: null, diurno: null, vespertino: null, semipresencial: 2461000 } },
   { n: 'TÉCNICO EN GESTIÓN INDUSTRIAL', modalidades: { online: 2248000, diurno: null, vespertino: null, semipresencial: null } },
+  { n: 'TÉCNICO EN MANTENIMIENTO INDUSTRIAL', modalidades: { online: null, diurno: null, vespertino: null, semipresencial: 2461000 } },
+  { n: 'TÉCNICO EN AUTOMATIZACIÓN Y CONTROL INDUSTRIAL', modalidades: { online: 2248000, diurno: null, vespertino: null, semipresencial: null } },
   { n: 'TÉCNICO EN INFRAESTRUCTURA CLOUD', modalidades: { online: 2190000, diurno: null, vespertino: null, semipresencial: null } },
   { n: 'TÉCNICO EN INSTALACIONES ELÉCTRICAS', modalidades: { online: null, diurno: null, vespertino: null, semipresencial: 2397000 } },
   { n: 'TÉCNICO EN INTELIGENCIA ARTIFICIAL', modalidades: { online: 2237000, diurno: null, vespertino: null, semipresencial: null } },
@@ -430,11 +436,11 @@ function generarTarjeta(desplazar = true) {
         </div>
         <div class="quote-prices">
           <div class="quote-price">
-            <span>Arancel referencial</span>
+            <span>Arancel referencial 2027</span>
             <strong>${formatMoney(arancelBase)}</strong>
           </div>
           <div class="quote-price quote-price-final">
-            <span>Arancel con descuento</span>
+            <span>Arancel con descuento 2027</span>
             <strong>${formatMoney(arancelFinal)}</strong>
           </div>
         </div>
